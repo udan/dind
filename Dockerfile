@@ -1,5 +1,9 @@
 FROM docker:dind
 
+ARG AWS_REGION='eu-west-1'
+ARG AWS_KEY='changeme'
+ARG AWS_SECRET='changeme'
+
 RUN apk add --no-cache python3 && \
         python3 -m ensurepip && \
         rm -r /usr/lib/python*/ensurepip && \
@@ -9,3 +13,8 @@ RUN apk add --no-cache python3 && \
         rm -r /root/.cache
 
 RUN pip3 --no-cache-dir install --upgrade awscli
+
+RUN aws configure set aws_access_key_id $AWS_KEY \
+ && aws configure set aws_secret_access_key $AWS_SECRET \
+ && aws configure set default.region $AWS_REGION
+
