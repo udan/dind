@@ -1,4 +1,4 @@
-FROM docker:dind
+FROM docker:stable-dind
 
 ARG AWS_REGION='eu-west-1'
 ARG AWS_KEY='changeme'
@@ -14,5 +14,7 @@ RUN apk add --no-cache python3 && \
 
 RUN pip3 --no-cache-dir install --upgrade awscli
 
-ENTRYPOINT ["./entrypoint.sh"]
+COPY entrypoint.sh /usr/local/bin/
+
+ENTRYPOINT ["entrypoint.sh"]
 
