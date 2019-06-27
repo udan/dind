@@ -14,5 +14,5 @@ RUN apk add --no-cache python3 && \
 
 RUN pip3 --no-cache-dir install --upgrade awscli
 
-ENTRYPOINT ["entrypoint"]
+ENTRYPOINT ["./entrypoint.sh"]
 
